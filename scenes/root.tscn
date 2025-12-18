@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmcj3ekgwvf1m"]
+[gd_scene load_steps=5 format=3 uid="uid://dmcj3ekgwvf1m"]
 
 [ext_resource type="Theme" uid="uid://bggq01u0avesd" path="res://resources/app_theme.tres" id="1_j5px3"]
+[ext_resource type="Script" uid="uid://sbjbkydjcjy2" path="res://scripts/root.gd" id="2_twpsu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrqlo"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7up8o"]
 bg_color = Color(1, 1, 1, 1)
@@ -17,6 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_j5px3")
+script = ExtResource("2_twpsu")
 
 [node name="MainMenu" type="Panel" parent="."]
 layout_mode = 1
@@ -25,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lrqlo")
 
 [node name="CenterContainer" type="CenterContainer" parent="MainMenu"]
 custom_minimum_size = Vector2(420, 0)
@@ -137,26 +143,82 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lrqlo")
 
-[node name="MarginContainer" type="MarginContainer" parent="ShortLong"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CenterContainer" type="CenterContainer" parent="ShortLong"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ShortLong/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ShortLong/CenterContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="Emotion" type="Label" parent="ShortLong/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ShortLong/CenterContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 24
 
-[node name="Short" type="Button" parent="ShortLong/MarginContainer/VBoxContainer"]
+[node name="Emotion" type="Label" parent="ShortLong/CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Emotion "
+horizontal_alignment = 1
+
+[node name="EmotionContainer" type="VBoxContainer" parent="ShortLong/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Short" type="Button" parent="ShortLong/CenterContainer/MarginContainer/VBoxContainer/EmotionContainer"]
+custom_minimum_size = Vector2(600, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_7up8o")
 text = "Short"
 
-[node name="Long" type="Button" parent="ShortLong/MarginContainer/VBoxContainer"]
+[node name="Long" type="Button" parent="ShortLong/CenterContainer/MarginContainer/VBoxContainer/EmotionContainer"]
+custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
-text = "Long"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_7up8o")
+text = "Long
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="ShortLong"]
+layout_mode = 1
+offset_right = 464.0
+offset_bottom = 214.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Anxiety" type="Button" parent="ShortLong/MarginContainer"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_7up8o")
+text = "Main"
+
+[node name="Emotion" type="Label" parent="ShortLong"]
+offset_left = 4.0
+offset_top = 1714.0
+offset_right = 1088.0
+offset_bottom = 1879.0
+theme_override_font_sizes/font_size = 50
+text = "Long exercises recommended - 10 min
+Short exercises - 5 min"
+horizontal_alignment = 1
 
 [node name="ExcerciseView" type="Panel" parent="."]
 visible = false
@@ -166,38 +228,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="MainMenu" type="Button" parent="ExcerciseView"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="SaveFavorite" type="Button" parent="ExcerciseView"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lrqlo")
 
 [node name="CenterContainer" type="CenterContainer" parent="ExcerciseView"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ExcerciseView/CenterContainer"]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="ExcerciseView/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="ExcerciseView/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Text" type="Label" parent="ExcerciseView/CenterContainer/VBoxContainer/Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="FavoritesView" type="Panel" parent="."]
-visible = false
+custom_minimum_size = Vector2(420, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -205,21 +239,131 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainMenu" type="Button" parent="FavoritesView"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="MarginContainer" type="MarginContainer" parent="FavoritesView"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="FavoritesView/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ExcerciseView/CenterContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="Title" type="Label" parent="FavoritesView/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ExcerciseView/CenterContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 24
 
-[node name="GridContainer" type="GridContainer" parent="FavoritesView/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="ExcerciseView/CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "variant - emotion"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="ExcerciseView/CenterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Take a few deep breaths then ask yourself what to do in this moment aaaaaaa aaaaa aaaaaa Take a few deep breaths then ask yourself what to do in this moment aaaaaaa aaaaa aaaaaa Take a few deep breaths then ask yourself what to do in this moment aaaaaaa aaaaa aaaaaa Take a few deep breaths then ask yourself what to do in this moment aaaaaaa aaaaa aaaaaa Take a few deep breaths then ask yourself what to do in this moment aaaaaaa aaaaa aaaaaa"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ExcerciseView"]
+layout_mode = 1
+offset_right = 464.0
+offset_bottom = 214.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Main" type="Button" parent="ExcerciseView/MarginContainer"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_7up8o")
+text = "Main"
+
+[node name="MarginContainer2" type="MarginContainer" parent="ExcerciseView"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -464.0
+offset_bottom = 214.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Save" type="Button" parent="ExcerciseView/MarginContainer2"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_7up8o")
+text = "Save"
+
+[node name="Favorites" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lrqlo")
+
+[node name="CenterContainer" type="CenterContainer" parent="Favorites"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Favorites/CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Favorites/CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Title" type="Label" parent="Favorites/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Favorite Excercises"
+horizontal_alignment = 1
+
+[node name="EmotionContainer" type="VBoxContainer" parent="Favorites/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Anxiety" type="Button" parent="Favorites/CenterContainer/MarginContainer/VBoxContainer/EmotionContainer"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_7up8o")
+text = "Anxiety"
+
+[node name="MarginContainer" type="MarginContainer" parent="Favorites"]
+layout_mode = 1
+offset_right = 464.0
+offset_bottom = 214.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Anxiety" type="Button" parent="Favorites/MarginContainer"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_7up8o")
+text = "Main"
