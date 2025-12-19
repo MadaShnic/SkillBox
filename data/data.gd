@@ -1,5 +1,6 @@
 extends Node
 
+#title unique
 const excercises := {
 	"anxiety": {
 		"short": {
